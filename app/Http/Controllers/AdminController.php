@@ -14,6 +14,21 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function home()
+    {
+        $statelist = City::paginate(5);
+        return view('welcome', compact('statelist'));
+    }
+
+    public function citylist($stateid)
+    {
+        // dd($stateid);
+        $citylist = City::where('state_id', $stateid)->get();
+        // dd($citylist);
+        return view('citylist', compact('citylist'));
+    }
+
     public function index()
     {
         $citylist = City::paginate(10);

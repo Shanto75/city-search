@@ -21,6 +21,41 @@
         <h1 class="p-5 text-center">CITY Search</h1>
         <div class="container p-5">
             
+            <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">City List</h3>
+                </div>
+                <table class="table table-bordered text-dark">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>State ID</th>
+                      <th>State Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($statelist as $state)
+                      <tr>
+                        <td>{{$state->id}}</td>
+                        <td>{{$state->state_id}}</td>
+                        <td>{{$state->state_name}}</td>
+                        <td>
+                          {{-- <button id="{{$city->id}}" onclick="getcitydata(this.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            view
+                          </button> --}}
+                          <a href="{{url('citylist', ['stateid'=>$state->state_id])}}" class="btn btn-primary" >view citys</a>
+                        </td>
+                      </tr>
+                    @endforeach
+                    
+                  </tbody>
+                </table>
+    
+                {!! $statelist->links() !!}
+    
+              </div>
+
             <a class="btn btn-primary mb-4 float-right" href="{{route('admin.home')}}">Go to Admin Section</a>
             <div class="input-group">
                 <input type="search" name="search" id="search" class="form-control form-control-lg search" placeholder="Type city state or county name here">

@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::resource('admin', AdminController::class);
+
+Route::get('/', [AdminController::class, 'home']);
+Route::get('citylist/{stateid}', [AdminController::class, 'citylist']);
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
 Route::post('admin/saveCity', [AdminController::class, 'store'])->name('admin.save.city');
